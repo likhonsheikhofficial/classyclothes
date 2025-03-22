@@ -1,0 +1,433 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Custom CSS from the provided code */
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.footer-wrapper {
+  background-color: #ebebeb;
+  height: 100px;
+  margin: 0 auto;
+}
+
+.footer-inner .block {
+  margin-top: 30px;
+}
+
+.footer-inner .block p {
+  font-size: 1.2em;
+  margin: 0;
+  text-align: right;
+}
+
+.horizontal-tabs ul {
+  width: 100%;
+  float: left;
+  border-bottom: 1px solid #aaa;
+}
+
+.horizontal-tabs ul li {
+  background-color: #fafafa;
+  border-left: 1px solid #aaa;
+  border-right: 1px solid #aaa;
+  border-top: 1px solid #aaa;
+  float: left;
+  margin-bottom: 0;
+}
+
+.horizontal-tabs ul li.active {
+  background-color: #aaa;
+}
+
+.horizontal-tabs ul li a {
+  color: #000;
+  padding: 10px;
+  float: left;
+}
+
+.horizontal-tabs ul li.active a {
+  color: #fff;
+}
+
+.horizontal-tabs ul li.active a:hover {
+  color: #fff;
+}
+
+.vertical-tabs div {
+  width: 70%;
+  float: left;
+}
+
+.vertical-tabs ul {
+  width: 30%;
+  float: left;
+}
+
+.vertical-tabs ul li {
+  width: 90%;
+  background-color: #fafafa;
+  border-right: 1px solid #aaa;
+  float: left;
+  margin-bottom: 0;
+}
+
+.vertical-tabs ul li.active {
+  background-color: #aaa;
+}
+
+.vertical-tabs ul li a {
+  float: left;
+  color: #000;
+  padding: 10px;
+}
+
+.vertical-tabs ul li.active a {
+  color: #fff;
+}
+
+.vertical-tabs ul li.active a:hover {
+  color: #fff;
+}
+
+.work_distribution li,
+.work_distribution a {
+  float: left;
+  font-size: 1em;
+  color: #666;
+}
+
+@media only screen and (min-width: 960px) {
+  body {
+    background: url("../images/bg_main.gif") repeat-y scroll center top rgba(0, 0, 0, 0);
+  }
+  .footer-artwork {
+    background: url("../images/footer_top_bg.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    height: 84px;
+    margin: 0 auto;
+    width: 1020px;
+    clear: both;
+  }
+  .footer-wrapper {
+    width: 1020px;
+  }
+  #block-block-1 {
+    float: right;
+    text-align: right;
+    margin-right: 20px;
+  }
+  .right-side-bar {
+    width: 220px !important;
+    margin-left: 20px !important;
+  }
+}
+
+/* Smaller than standard 960 (devices and browsers) */
+@media only screen and (max-width: 959px) {
+  .footer-artwork {
+    height: 15px;
+    margin: 0 auto;
+    background-color: #666;
+  }
+  #notice-board {
+    background: url("images/welcome_grad.png") repeat-x scroll center bottom #ebebeb;
+    border: 1px solid #dddddd;
+    height: 172px;
+    font-size: .8em;
+    padding: 20px 0 0 120px;
+  }
+  #notice-board h2 {
+    font-size: 1.5em;
+  }
+}
+
+/* Responsive slider styles */
+.rslides {
+  position: relative;
+  list-style: none;
+  overflow: hidden;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.rslides li {
+  -webkit-backface-visibility: hidden;
+  position: absolute;
+  display: none;
+  width: 100%;
+  left: 0;
+  top: 0;
+}
+
+.rslides li:first-child {
+  position: relative;
+  display: block;
+  float: left;
+}
+
+.rslides img {
+  display: block;
+  height: auto;
+  float: left;
+  width: 100%;
+  border: 0;
+}
+
+@layer utilities {
+  .animate-marquee {
+    animation: marquee 20s linear infinite;
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+}
+
+/* Copyright protection styles */
+img {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+}
+
+/* Contact form styles */
+.wpcf7 .screen-reader-response {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  word-wrap: normal !important;
+}
+
+.wpcf7 form .wpcf7-response-output {
+  margin: 2em 0.5em 1em;
+  padding: 0.2em 1em;
+  border: 2px solid #00a0d2; /* Blue */
+}
+
+.wpcf7 form.init .wpcf7-response-output,
+.wpcf7 form.resetting .wpcf7-response-output,
+.wpcf7 form.submitting .wpcf7-response-output {
+  display: none;
+}
+
+.wpcf7 form.sent .wpcf7-response-output {
+  border-color: #46b450; /* Green */
+}
+
+.wpcf7 form.failed .wpcf7-response-output,
+.wpcf7 form.aborted .wpcf7-response-output {
+  border-color: #dc3232; /* Red */
+}
+
+.wpcf7 form.spam .wpcf7-response-output {
+  border-color: #f56e28; /* Orange */
+}
+
+.wpcf7 form.invalid .wpcf7-response-output,
+.wpcf7 form.unaccepted .wpcf7-response-output,
+.wpcf7 form.payment-required .wpcf7-response-output {
+  border-color: #ffb900; /* Yellow */
+}
+
+.wpcf7-form-control-wrap {
+  position: relative;
+}
+
+.wpcf7-not-valid-tip {
+  color: #dc3232; /* Red */
+  font-size: 1em;
+  font-weight: normal;
+  display: block;
+}
+
+.use-floating-validation-tip .wpcf7-not-valid-tip {
+  position: relative;
+  top: -2ex;
+  left: 1em;
+  z-index: 100;
+  border: 1px solid #dc3232;
+  background: #fff;
+  padding: .2em .8em;
+  width: 24em;
+}
+
+.wpcf7-list-item {
+  display: inline-block;
+  margin: 0 0 0 1em;
+}
+
+.wpcf7-list-item-label::before,
+.wpcf7-list-item-label::after {
+  content: " ";
+}
+
+.wpcf7-spinner {
+  visibility: hidden;
+  display: inline-block;
+  background-color: #23282d; /* Dark Gray 800 */
+  opacity: 0.75;
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 100%;
+  padding: 0;
+  margin: 0 24px;
+  position: relative;
+}
+
+form.submitting .wpcf7-spinner {
+  visibility: visible;
+}
+
+.wpcf7-spinner::before {
+  content: "";
+  position: absolute;
+  background-color: #fbfbfc; /* Light Gray 100 */
+  top: 4px;
+  left: 4px;
+  width: 6px;
+  height: 6px;
+  border: none;
+  border-radius: 100%;
+  transform-origin: 8px 8px;
+  animation-name: spin;
+  animation-duration: 1000ms;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wpcf7-spinner::before {
+    animation-name: blink;
+    animation-duration: 2000ms;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes blink {
+  from {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.wpcf7 [inert] {
+  opacity: 0.5;
+}
+
+.wpcf7 input[type="file"] {
+  cursor: pointer;
+}
+
+.wpcf7 input[type="file"]:disabled {
+  cursor: default;
+}
+
+.wpcf7 .wpcf7-submit:disabled {
+  cursor: not-allowed;
+}
+
+.wpcf7 input[type="url"],
+.wpcf7 input[type="email"],
+.wpcf7 input[type="tel"] {
+  direction: ltr;
+}
+
+.wpcf7-reflection > output {
+  display: list-item;
+  list-style: none;
+}
+
+.wpcf7-reflection > output[hidden] {
+  display: none;
+}
+

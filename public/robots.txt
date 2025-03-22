@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+
+# Allow scam alert pages to be indexed
+Allow: /scam/
+
+# Disallow API routes from being indexed by search engines
+Disallow: /api/
+
+# Sitemap
+Sitemap: https://classyclothes.coupons/sitemap.xml
+
+# Host
+Host: classyclothes.coupons
+

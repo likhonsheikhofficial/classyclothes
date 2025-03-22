@@ -1,0 +1,25 @@
+{
+  "url": "https://classy-clothes-bd.com",
+  "name": "Classy-Clothes-BD.com",
+  "description": "This is another fraudulent website impersonating our official Classy Clothes brand. The site uses a hyphenated domain name to appear legitimate but has no connection to our company. It steals our images, branding, and product descriptions to deceive customers.",
+  "detectedDate": "2024-03-20T14:30:00Z",
+  "evidence": {
+    "screenshots": [
+      "classy-clothes-bd-com-homepage.jpg",
+      "classy-clothes-bd-com-collection.jpg",
+      "classy-clothes-bd-com-payment.jpg"
+    ],
+    "links": [
+      "https://www.scamadviser.com/check-website/classy-clothes-bd.com",
+      "https://twitter.com/cybersecuritybd/status/1771234567890"
+    ]
+  },
+  "warningDetails": [
+    "This fake website has stolen our product catalog and images to create a convincing copy.",
+    "The site offers extremely low prices to attract unsuspecting customers.",
+    "Contact information on the site is either non-functional or routes to scammers.",
+    "Customer information entered on this site may be used for identity theft.",
+    "The site lacks proper security certificates and secure payment processing.",
+    "The domain was registered only recently, unlike our established official domain."
+  ]
+}

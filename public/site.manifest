@@ -1,0 +1,22 @@
+{
+  "name": "Classy Clothes",
+  "short_name": "Classy Clothes",
+  "description": "Premium fashion boutique offering exclusive Pakistani dresses, Karchupi dresses, and more elegant clothing options.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#e7c78d",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
+

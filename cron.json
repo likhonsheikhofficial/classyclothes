@@ -1,0 +1,23 @@
+{
+  "jobs": [
+    {
+      "name": "scan-scam-sites",
+      "command": "ts-node scripts/scan-scam-sites.ts",
+      "schedule": "0 0 * * *",
+      "timezone": "UTC"
+    },
+    {
+      "name": "generate-sitemap",
+      "command": "ts-node scripts/generate-sitemap.ts",
+      "schedule": "0 1 * * *",
+      "timezone": "UTC"
+    },
+    {
+      "name": "generate-og-images",
+      "command": "ts-node scripts/generate-og-images.ts",
+      "schedule": "0 2 * * 1",
+      "timezone": "UTC"
+    }
+  ]
+}
+

@@ -1,0 +1,24 @@
+{
+  "url": "https://classyclothes.com.bd",
+  "name": "ClassyClothes.com.bd",
+  "description": "This website is a fraudulent copy of our official Classy Clothes website. It duplicates our product images, descriptions, and brand identity without permission. The site attempts to mislead customers into believing they are shopping at the official Classy Clothes store.",
+  "detectedDate": "2024-03-18T10:25:00Z",
+  "evidence": {
+    "screenshots": [
+      "classyclothes-com-bd-homepage.jpg",
+      "classyclothes-com-bd-products.jpg",
+      "classyclothes-com-bd-checkout.jpg"
+    ],
+    "links": [
+      "https://www.facebook.com/groups/bangladeshcyber/posts/12345678",
+      "https://threatpost.com/ecommerce-scams-2024/189732/"
+    ]
+  },
+  "warningDetails": [
+    "This fake website copies product images and descriptions from our official site without permission.",
+    "The checkout process may steal your personal and financial information.",
+    "Customer service contacts listed on the site are not affiliated with the real Classy Clothes brand.",
+    "The site offers unrealistic discounts to lure customers into making purchases.",
+    "The domain name (classyclothes.com.bd) is designed to look similar to our official domain but is a completely different website."
+  ]
+}
