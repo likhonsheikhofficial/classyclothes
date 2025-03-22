@@ -7,10 +7,13 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "scan": "ts-node scripts/scan-scam-sites.ts",
-    "generate-sitemap": "ts-node scripts/generate-sitemap.ts",
-    "generate-og": "ts-node scripts/generate-og-images.ts",
-    "analyze": "ANALYZE=true next build"
+    "scan": "node scripts/run-scanner.js",
+    "scan-site": "node scripts/scan-site.js",
+    "generate-sitemap": "next-sitemap",
+    "generate-og": "node scripts/generate-og-images.js",
+    "analyze": "ANALYZE=true next build",
+    "test-cron": "node -e \"require('./app/api/cron/scan/route.js').GET({headers: new Headers({authorization: 'Bearer test', 'x-vercel-cron': 'true'})})\"",
+    "postbuild": "npm run generate-sitemap"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
@@ -63,10 +66,12 @@
     "react-hook-form": "^7.54.1",
     "react-resizable-panels": "^2.1.7",
     "recharts": "2.15.0",
+    "sharp": "^0.33.2",
     "sonner": "^1.7.1",
     "tailwind-merge": "^2.2.0",
     "tailwindcss-animate": "^1.0.7",
     "vaul": "^0.9.6",
+    "xml2js": "^0.6.2",
     "zod": "^3.24.1"
   },
   "devDependencies": {
@@ -76,10 +81,10 @@
     "@types/react-dom": "^18.2.18",
     "eslint": "^8.56.0",
     "eslint-config-next": "^14.0.4",
+    "next-sitemap": "^4.2.3",
     "postcss": "^8",
     "tailwindcss": "^3.4.17",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
   }
 }
-
