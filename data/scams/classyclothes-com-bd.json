@@ -5,9 +5,68 @@
   "detectedDate": "2024-03-18T10:25:00Z",
   "evidence": {
     "screenshots": [
-      "classyclothes-com-bd-homepage.jpg",
-      "classyclothes-com-bd-products.jpg",
-      "classyclothes-com-bd-checkout.jpg"
+      {
+        "type": "homepage",
+        "label": "Fake Homepage",
+        "path": "/images/scam-evidence/classyclothes-com-bd-homepage.jpg",
+        "thumbnail": "/images/scam-evidence/thumbs/classyclothes-com-bd-homepage.jpg",
+        "url": "https://classyclothes.com.bd"
+      },
+      {
+        "type": "products",
+        "label": "Copied Product Listings",
+        "path": "/images/scam-evidence/classyclothes-com-bd-products.jpg",
+        "thumbnail": "/images/scam-evidence/thumbs/classyclothes-com-bd-products.jpg",
+        "url": "https://classyclothes.com.bd/products"
+      },
+      {
+        "type": "checkout",
+        "label": "Fake Checkout System",
+        "path": "/images/scam-evidence/classyclothes-com-bd-checkout.jpg",
+        "thumbnail": "/images/scam-evidence/thumbs/classyclothes-com-bd-checkout.jpg",
+        "url": "https://classyclothes.com.bd/checkout"
+      }
+    ],
+    "analyses": [
+      {
+        "url": "https://classyclothes.com.bd",
+        "title": "Homepage Analysis",
+        "description": "The homepage contains copied content from our official website including product images and branding elements.",
+        "indicators": {
+          "hasCheckout": true,
+          "hasPaymentSystem": true,
+          "hasBengaliText": true,
+          "hasProductListings": true,
+          "hasPricing": true,
+          "hasCopiedContent": true
+        }
+      },
+      {
+        "url": "https://classyclothes.com.bd/products",
+        "title": "Products Page Analysis",
+        "description": "This page contains unauthorized copies of our product catalog with similar pricing and descriptions.",
+        "indicators": {
+          "hasCheckout": false,
+          "hasPaymentSystem": false,
+          "hasBengaliText": true,
+          "hasProductListings": true,
+          "hasPricing": true,
+          "hasCopiedContent": true
+        }
+      },
+      {
+        "url": "https://classyclothes.com.bd/checkout",
+        "title": "Checkout System Analysis",
+        "description": "The checkout system collects personal and payment information which puts customers at risk of fraud.",
+        "indicators": {
+          "hasCheckout": true,
+          "hasPaymentSystem": true,
+          "hasBengaliText": true,
+          "hasProductListings": false,
+          "hasPricing": true,
+          "hasCopiedContent": true
+        }
+      }
     ],
     "links": [
       "https://www.facebook.com/groups/bangladeshcyber/posts/12345678",
@@ -19,6 +78,8 @@
     "The checkout process may steal your personal and financial information.",
     "Customer service contacts listed on the site are not affiliated with the real Classy Clothes brand.",
     "The site offers unrealistic discounts to lure customers into making purchases.",
-    "The domain name (classyclothes.com.bd) is designed to look similar to our official domain but is a completely different website."
+    "The domain name (classyclothes.com.bd) is designed to look similar to our official domain but is a completely different website.",
+    "The site has Bengali text in various places, which is not present on our official site.",
+    "The payment methods offered differ from our official payment options and may be fraudulent."
   ]
 }

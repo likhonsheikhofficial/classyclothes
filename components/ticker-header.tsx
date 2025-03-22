@@ -1,14 +1,35 @@
-import React, { useState } from "react"
-import { AlertTriangle, X } from "lucide-react"
+"use client"
+
+import React, { useState, useEffect } from "react"
+import { AlertTriangle, X, ExternalLink } from "lucide-react"
 import Link from "next/link"
+
+const KNOWN_SCAM_SITES = [
+  "classyclothes.com.bd",
+  "classy-clothes-bd.com",
+  "classycl.com.bd",
+  "yclothes.com.bd"
+]
 
 export function TickerHeader() {
   const [isVisible, setIsVisible] = useState(true)
+  const [currentScamIndex, setCurrentScamIndex] = useState(0)
+
+  // Rotate through scam sites every 5 seconds
+  useEffect(() => {
+    if (!isVisible) return
+    
+    const interval = setInterval(() => {
+      setCurrentScamIndex((prevIndex) => (prevIndex + 1) % KNOWN_SCAM_SITES.length)
+    }, 5000)
+    
+    return () => clearInterval(interval)
+  }, [isVisible])
 
   if (!isVisible) return null
 
   return (
-    <div className="relative bg-red-600 text-white py-2 px-4 shadow-md">
+    <div className="sticky top-0 z-50 bg-red-600 text-white py-2 px-4 shadow-md">
       <div className="container mx-auto">
         <div className="flex items-center justify-center">
           <div className="flex items-center space-x-2 animate-pulse">
@@ -17,7 +38,7 @@ export function TickerHeader() {
           </div>
           <div className="font-medium text-center mx-4 text-sm md:text-base">
             <span className="inline-block whitespace-nowrap">
-              Warning: <strong>classyclothes.com.bd</strong> is a FAKE website!
+              <strong>WARNING:</strong> <strong className="text-yellow-200">{KNOWN_SCAM_SITES[currentScamIndex]}</strong> is a FAKE website!
             </span>
             <span className="hidden md:inline-block mx-2">|</span>
             <span className="inline-block whitespace-nowrap">
@@ -25,7 +46,9 @@ export function TickerHeader() {
             </span>
             <span className="hidden md:inline-block mx-2">|</span>
             <span className="inline-block whitespace-nowrap">
-              Contact <Link href="mailto:copyright@classyclothes.coupons" className="underline hover:text-yellow-200">copyright@classyclothes.coupons</Link> for copyright concerns
+              <Link href="/scam" className="font-bold px-2 py-0.5 bg-white text-red-600 rounded hover:bg-yellow-200 transition-colors">
+                View Scam Alerts <ExternalLink className="inline h-3 w-3" />
+              </Link>
             </span>
           </div>
           <div className="flex items-center space-x-2 animate-pulse">
