@@ -2990,6 +2990,7 @@ if (!String.prototype.trim) {
                     return;
                 var event = Utils.clone(options.dynamicEvents.woo_affiliate[this.tag()]);
 
+
                 if (window.pysWooProductData.hasOwnProperty(product_id)) {
                     if (window.pysWooProductData[product_id].hasOwnProperty('facebook')) {
 
@@ -3852,7 +3853,7 @@ if (!String.prototype.trim) {
                 var event = Utils.clone(options.dynamicEvents.woo_add_to_cart_on_button_click[this.tag()]);
 
                 if (product_type === Utils.PRODUCT_VARIABLE && !options.google_ads.wooVariableAsSimple) {
-                    product_id = parseInt($form.find('input[name="add-to-cart"]').val());
+                    product_id = parseInt($form.find('input[name="variation_id"]').val());
                 }
 
                 if (window.pysWooProductData.hasOwnProperty(product_id)) {
@@ -4793,20 +4794,22 @@ if (!String.prototype.trim) {
 
             // EDD AddToCart
             if (options.dynamicEvents.hasOwnProperty("edd_add_to_cart_on_button_click")) {
-                $('form.edd_download_purchase_form .edd-add-to-cart').on("click", function (e) {
-                    // Initialize variables
+
+                $('form.edd_download_purchase_form .edd-add-to-cart').on("click",function (e) {
+
+                    var $button = $(this);
+                    var $form = $button.closest('form');
+                    var variable_price = $button.data('variablePrice'); // yes/no
+                    var price_mode = $button.data('priceMode'); // single/multi
                     var ids = [];
                     var quantities = [];
-                    var $form = $(this).closest('form');
-                    var $button = $(this);
-                    var variable_price = $form.find('input[name="edd_variable_pricing"]').val();
-                    var price_mode = $form.find('input[name="edd_price_option_mode"]').val();
-                    
-                    // Clear arrays before populating
-                    ids.length = 0;
-                    quantities.length = 0;
+                    var qty;
+                    var id;
 
                     if (variable_price === 'yes' && price_mode === 'multi') {
+
+                        id = $form.find('input[name="download_id"]').val();
+
                         // get selected variants
                         $.each($form.find('input[name="edd_options[price_id][]"]:checked'), function (i, el) {
                             ids.push(id + '_' + $(el).val());
@@ -4827,6 +4830,7 @@ if (!String.prototype.trim) {
                         });
 
                     } else if (variable_price === 'yes' && price_mode === 'single') {
+
                         id = $form.find('input[name="download_id"]').val();
                         ids.push(id + '_' + $form.find('input[name="edd_options[price_id][]"]:checked').val());
 
@@ -4839,6 +4843,7 @@ if (!String.prototype.trim) {
                         }
 
                     } else {
+
                         ids.push($button.data('downloadId'));
 
                         qty = $form.find('input[name="edd_download_quantity"]').val();
@@ -4850,29 +4855,29 @@ if (!String.prototype.trim) {
                         }
                     }
 
-                    // Fire event for each download/variant with error handling
-                    try {
-                        $.each(ids, function (i, download_id) {
-                            var q = parseInt(quantities[i]);
-                            var variant_index = download_id.toString().split('_', 2);
-                            var price_index;
+                    // fire event for each download/variant
+                    $.each(ids, function (i, download_id) {
 
-                            if (variant_index.length === 2) {
-                                download_id = variant_index[0];
-                                price_index = variant_index[1];
-                            }
+                        var q = parseInt(quantities[i]);
+                        var variant_index = download_id.toString().split('_', 2);
+                        var price_index;
 
-                            Facebook.onEddAddToCartOnButtonEvent(download_id, price_index, q);
-                            Analytics.onEddAddToCartOnButtonEvent(download_id, price_index, q);
-                            GAds.onEddAddToCartOnButtonEvent(download_id, price_index, q);
-                            Pinterest.onEddAddToCartOnButtonEvent(download_id, price_index, q);
-                            Bing.onEddAddToCartOnButtonEvent(download_id, price_index, q);
-                            TikTok.onEddAddToCartOnButtonEvent(download_id, price_index, q);
-                        });
-                    } catch(err) {
-                        console.error('Error processing download:', err);
-                    }
+                        if (variant_index.length === 2) {
+                            download_id = variant_index[0];
+                            price_index = variant_index[1];
+                        }
+
+                        Facebook.onEddAddToCartOnButtonEvent(download_id, price_index, q);
+                        Analytics.onEddAddToCartOnButtonEvent(download_id, price_index, q);
+                        GAds.onEddAddToCartOnButtonEvent(download_id, price_index, q);
+                        Pinterest.onEddAddToCartOnButtonEvent(download_id, price_index, q);
+                        Bing.onEddAddToCartOnButtonEvent(download_id, price_index, q);
+                        TikTok.onEddAddToCartOnButtonEvent(download_id, price_index, q);
+
+                    });
+
                 });
+
             }
 
             // EDD RemoveFromCart
@@ -5133,11 +5138,6 @@ if (!String.prototype.trim) {
                     sendFormAction($(event.target), form_id);
                 }
             }
-            else {
-                sendFormAction($(event.target), form_id);
-            }
-        })
-        $(document).on( 'frmFormComplete', function( event, form, response ) {
             else {
                 sendFormAction($(event.target), form_id);
             }

@@ -51,60 +51,6 @@ export function CheckoutForm() {
     setFormData((prev) => ({ ...prev, paymentMethod: value }))
   }
 
-  const initializeAtlosPayment = () => {
-    try {
-      if (window.atlos) {
-        window.atlos.Pay({
-          merchantId: process.env.NEXT_PUBLIC_ATLOS_MERCHANT_ID || "U07EBIF48Y",
-          orderId: `ORDER-${Date.now()}`,
-          orderAmount: 1730.0,
-        });
-      } else {
-        throw new Error("Atlos payment SDK not loaded");
-      }
-    } catch (error) {
-      console.error("Atlos payment error:", error);
-      toast({
-        title: "Payment Error",
-        description: "There was an error initializing the payment. Please try again.",
-        variant: "destructive",
-      });
-    }
-  };
-
-  const handlePaymentMethod = async () => {
-    switch (formData.paymentMethod) {
-      case "atlos":
-        await initializeAtlosPayment();
-        break
-      case "bkash":
-        // For bKash, show confirmation and redirect to success page
-        toast({
-          title: "bKash Payment",
-          description: "Please complete your payment by sending ৳1,730.00 to 01325408283 (Merchant)",
-        })
-
-        // In a real app, you would wait for payment confirmation
-        setTimeout(() => {
-          window.location.href = "/checkout/success?payment=bkash"
-        }, 3000)
-        break
-
-      case "cod":
-      default:
-        // For COD, proceed with order submission
-        setTimeout(() => {
-          toast({
-            title: "Order Placed",
-            description: "Your order has been placed successfully!",
-          })
-          // Redirect to order confirmation page
-          window.location.href = "/checkout/success"
-        }, 1500)
-        break
-    }
-  }
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
@@ -122,7 +68,61 @@ export function CheckoutForm() {
       }
 
       // Handle different payment methods
-      await handlePaymentMethod()
+      switch (formData.paymentMethod) {
+        case "atlos":
+          // Load Atlos script if not already loaded
+          if (!document.getElementById("atlos-script")) {
+            const script = document.createElement("script")
+            script.id = "atlos-script"
+            script.src = "https://atlos.io/packages/app/atlos.js"
+            script.async = true
+            script.onload = () => {
+              // Initialize Atlos payment
+              if (window.atlos) {
+                window.atlos.Pay({
+                  merchantId: "U07EBIF48Y",
+                  orderId: `ORDER-${Date.now()}`,
+                  orderAmount: 1730.0, // This would normally come from your cart/order state
+                })
+              }
+            }
+            document.body.appendChild(script)
+          } else if (window.atlos) {
+            // If script is already loaded, just call the Pay method
+            window.atlos.Pay({
+              merchantId: "U07EBIF48Y",
+              orderId: `ORDER-${Date.now()}`,
+              orderAmount: 1730.0,
+            })
+          }
+          break
+
+        case "bkash":
+          // For bKash, show confirmation and redirect to success page
+          toast({
+            title: "bKash Payment",
+            description: "Please complete your payment by sending ৳1,730.00 to 01325408283 (Merchant)",
+          })
+
+          // In a real app, you would wait for payment confirmation
+          setTimeout(() => {
+            window.location.href = "/checkout/success?payment=bkash"
+          }, 3000)
+          break
+
+        case "cod":
+        default:
+          // For COD, proceed with order submission
+          setTimeout(() => {
+            toast({
+              title: "Order Placed",
+              description: "Your order has been placed successfully!",
+            })
+            // Redirect to order confirmation page
+            window.location.href = "/checkout/success"
+          }, 1500)
+          break
+      }
     } catch (error) {
       console.error("Checkout error:", error)
       toast({

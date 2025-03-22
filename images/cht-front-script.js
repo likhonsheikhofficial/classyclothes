@@ -617,17 +617,15 @@
 
         $(document).on("submit", ".chaty-ajax-contact-form", function (e) {
             e.preventDefault();
-            
             var inputErrorCounter = 0;
-            var $form = $(this);
-
-            // Clear previous errors
-            $form.find(".has-chaty-error").removeClass("has-chaty-error");
-            $form.find(".chaty-error-msg, .chaty-ajax-error-message, .chaty-ajax-success-message").remove();
-
-            // Validate required fields
-            $form.find(".is-required").each(function () {
-                if ($.trim($(this).val()) === "") {
+            $(this).find(".has-chaty-error").each(function () {
+                $(this).removeClass("has-chaty-error");
+            });
+            $(this).find(".chaty-error-msg").remove();
+            $(this).find(".chaty-ajax-error-message").remove();
+            $(this).find(".chaty-ajax-success-message").remove();
+            $(this).find(".is-required").each(function () {
+                if (jQuery.trim($(this).val()) == "") {
                     inputErrorCounter++;
                     $(this).addClass("has-chaty-error");
                     if($(this).hasClass("chaty-text-block")) {
@@ -635,19 +633,16 @@
                     }
                 }
             });
-
-            if (inputErrorCounter === 0) {
-                var formData = new FormData($form[0]);
-                
-                // Disable submit button and show loader
-                $form.find(".chaty-submit-button").prop("disabled", true);
-                $("#chaty-submit-button-" + $form.data("index") + " .chaty-loader").addClass("active");
-
-                // Submit form via AJAX
-                $.ajax({
+            if (inputErrorCounter == 0) {
+                var $form = $(this);
+                var form = $form[0];
+                var data = new FormData(form);
+                $(".chaty-submit-button").attr("disabled", true);
+                $("#chaty-submit-button-"+ $form.data("index") + " .chaty-loader").addClass("active");
+                jQuery.ajax({
                     url: chaty_settings.ajax_url,
                     enctype: 'multipart/form-data',
-                    data: formData,
+                    data: data,
                     type: 'post',
                     dataType: 'json',
                     cache: false,
@@ -710,14 +705,11 @@
                         }
                         $(".email_suggestion").html('');
                     }
-                }).fail(function(xhr) {
-                    console.error('Form submission error:', xhr);
-                    $form.append('<div class="chaty-ajax-error-message">An error occurred. Please try again.</div>');
-                }).always(function() {
-                    $form.find(".chaty-submit-button").prop("disabled", false);
-                    $("#chaty-submit-button-" + $form.data("index") + " .chaty-loader").removeClass("active");
                 });
+            } else {
+                $(".has-chaty-error:first").focus();
             }
+            return false;
         });
 
         $(document).on('blur','.chaty-contact-form-box .field-email', function(event) {
