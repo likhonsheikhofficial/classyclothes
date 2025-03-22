@@ -1,0 +1,16 @@
+fl=362f8
+h=www.cloudflare.com
+ip=103.153.174.130
+ts=1742628831.386
+visit_scheme=https
+uag=Mozilla/5.0 (Windows NT 6.1; Trident/7.0; rv:11.0) like Gecko
+colo=DAC
+sliver=none
+http=http/1.1
+loc=BD
+tls=TLSv1.2
+sni=plaintext
+warp=off
+gateway=off
+rbi=off
+kex=X25519
