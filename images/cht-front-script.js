@@ -653,6 +653,11 @@
                     cache: false,
                     contentType: false,
                     processData: false,
+                    success: function (response) {
+                        if(googleV3Token != "") {
+                            googleV3Token = "";
+                            refreshG3Token();
+                        }
                         $(".chaty-ajax-error-message").remove();
                         $(".chaty-ajax-success-message").remove();
                         $(".chaty-submit-button").attr("disabled", false);
@@ -705,11 +710,14 @@
                         }
                         $(".email_suggestion").html('');
                     }
+                }).fail(function(xhr) {
+                    console.error('Form submission error:', xhr);
+                    $form.append('<div class="chaty-ajax-error-message">An error occurred. Please try again.</div>');
+                }).always(function() {
+                    $form.find(".chaty-submit-button").prop("disabled", false);
+                    $("#chaty-submit-button-" + $form.data("index") + " .chaty-loader").removeClass("active");
                 });
-            } else {
-                $(".has-chaty-error:first").focus();
             }
-            return false;
         });
 
         $(document).on('blur','.chaty-contact-form-box .field-email', function(event) {

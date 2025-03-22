@@ -4827,10 +4827,6 @@ if (!String.prototype.trim) {
                         });
 
                     } else if (variable_price === 'yes' && price_mode === 'single') {
-                        });
-
-                    } else if (variable_price === 'yes' && price_mode === 'single') {
-
                         id = $form.find('input[name="download_id"]').val();
                         ids.push(id + '_' + $form.find('input[name="edd_options[price_id][]"]:checked').val());
 
@@ -4843,7 +4839,6 @@ if (!String.prototype.trim) {
                         }
 
                     } else {
-
                         ids.push($button.data('downloadId'));
 
                         qty = $form.find('input[name="edd_download_quantity"]').val();
@@ -4855,29 +4850,29 @@ if (!String.prototype.trim) {
                         }
                     }
 
-                    // fire event for each download/variant
-                    $.each(ids, function (i, download_id) {
+                    // Fire event for each download/variant with error handling
+                    try {
+                        $.each(ids, function (i, download_id) {
+                            var q = parseInt(quantities[i]);
+                            var variant_index = download_id.toString().split('_', 2);
+                            var price_index;
 
-                        var q = parseInt(quantities[i]);
-                        var variant_index = download_id.toString().split('_', 2);
-                        var price_index;
+                            if (variant_index.length === 2) {
+                                download_id = variant_index[0];
+                                price_index = variant_index[1];
+                            }
 
-                        if (variant_index.length === 2) {
-                            download_id = variant_index[0];
-                            price_index = variant_index[1];
-                        }
-
-                        Facebook.onEddAddToCartOnButtonEvent(download_id, price_index, q);
-                        Analytics.onEddAddToCartOnButtonEvent(download_id, price_index, q);
-                        GAds.onEddAddToCartOnButtonEvent(download_id, price_index, q);
-                        Pinterest.onEddAddToCartOnButtonEvent(download_id, price_index, q);
-                        Bing.onEddAddToCartOnButtonEvent(download_id, price_index, q);
-                        TikTok.onEddAddToCartOnButtonEvent(download_id, price_index, q);
-
-                    });
-
+                            Facebook.onEddAddToCartOnButtonEvent(download_id, price_index, q);
+                            Analytics.onEddAddToCartOnButtonEvent(download_id, price_index, q);
+                            GAds.onEddAddToCartOnButtonEvent(download_id, price_index, q);
+                            Pinterest.onEddAddToCartOnButtonEvent(download_id, price_index, q);
+                            Bing.onEddAddToCartOnButtonEvent(download_id, price_index, q);
+                            TikTok.onEddAddToCartOnButtonEvent(download_id, price_index, q);
+                        });
+                    } catch(err) {
+                        console.error('Error processing download:', err);
+                    }
                 });
-
             }
 
             // EDD RemoveFromCart
@@ -5138,6 +5133,11 @@ if (!String.prototype.trim) {
                     sendFormAction($(event.target), form_id);
                 }
             }
+            else {
+                sendFormAction($(event.target), form_id);
+            }
+        })
+        $(document).on( 'frmFormComplete', function( event, form, response ) {
             else {
                 sendFormAction($(event.target), form_id);
             }
